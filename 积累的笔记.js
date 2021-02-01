@@ -1,25 +1,16 @@
-{
-  const obj = { name: 'zs' }
-  const obj1 = Object.create(obj)
-  console.log(obj1);
-  console.log(obj1.__proto__);
-}
 
 {
-  const arr = [1, 2, 3]
-  arr.push(3, 4, 5, 6, 7)
-  console.log(arr);
-}
-
-
-
-
-
-{
-  console.log('........................');
   /*
-  Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+   vue实例数据挂载过程
+   options={el:'#app',data(){return {name:'zs',age:10}}}
+   1首先在实例身上挂载了 vm.$options=options
+   2在实例身上挂载了 vm._data={name:'zs',agee:10}
+   3对{name:'zs',agee:10}进行数据劫持 ：无论多深都会对象劫持；重新赋值也会劫持变为get/set  .
+   4 如果是数组 需要重写改变数组的7个方法 其他方法继续继承 push pop shift unshift sort reverse splice 
   */
+}
+{
+  // Object.defineProperty() 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
   const obj = {}
   let temp
   Object.defineProperty(obj, 'a', {
@@ -37,14 +28,11 @@
 
   })
 
-
   obj.a = 9
   console.log(obj.a);
   console.log(obj); //{} 是因为enumerable：false 默认值
   console.log(obj.hasOwnProperty('a')); //true
-}
-
-{
+ console.log('--------------------------------------------------------------------------------');
   function defineReactive(data, key, value) {
     Object.defineProperty(data, key, {
       //本质是get set数据劫持 get setter函数其实是闭包 发现没
@@ -58,61 +46,15 @@
       }
     })
   }
-  const obj = {
-    name: 'zs',
-    age: 10,
-    sex: 'male'
-  }
-  const keys = Object.keys(obj)
-  keys.forEach(key => {
-    defineReactive(obj, key, obj[key])
-  })
-
-
+  const obj = {}
+  defineReactive(obj, 'a', 1)
+  console.log(obj.a); //获取值
+  obj.a = 10 //设置值
+  console.log(obj.a); //
 }
 
 {
-  const arr = [1, 2, 3, 4]
-  const keys = Object.keys(arr)
-  console.log(keys);
-
-  function defineReactive(data, key, value) {
-    Object.defineProperty(data, key, {
-      get() {
-        console.log(key, 'key')
-        return value;
-      },
-      set(newValue) { 
-        console.log('key setter',key);
-        value = newValue }
-    })
-  }
-  keys.forEach(key => {
-    defineReactive(arr, key, arr[key])
-  })
-  https://jingdezhen.eshimin.com/newborn-onething-manager/a/login
-  
-  console.log(arr[0])
-  arr[2]=100
-
-}
-
-{
-  const obj={}
-  Object.defineProperty(obj,'__ob__',{
-    enumerable:true,
-    
-    value:277
-  })
-  // console.log(obj.__ob__);
-  for(let key in obj){
-    console.log(key,obj[key]);
-  }
-  delete obj.__ob__
-  console.log(obj.__ob__)
-}
-
-{
+//  proxy代理
   const info={_a:{name:'zs',age:10}}
   console.log(info._a.name);
   for(let key in info._a){

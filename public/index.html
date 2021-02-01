@@ -16,12 +16,14 @@
       el: '#app',
       data() {
         return {
-            a:[1,2,3,{a1:100}]
+            obj:{name:'zs',info:{x:1,y:2}},
+            a:[1,2,3,{a1:100,a2:200}]
         }
       }
 
     })
-    vm._data.a.push(100,200,300)
+    // vm._data.a.push(100,200,300)
+    vm._data.a.push({b:'bbb'}) //这个push的对象也需要是被劫持 拦截
 
 
   </script>

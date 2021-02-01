@@ -13,3 +13,15 @@ export function pureObject(data){
 export function isArray(data){
   return _toString.call(data).slice(8,-1)==='Array'
 }
+
+
+export function proxy(vm,data,key){
+  Object.defineProperty(vm,key,{
+    get(){
+      return vm[data][key] //vm.a==>vm._data.a
+    },
+    set(newValue){
+      vm[data][key]=newValue //vm.a=10==>vm._data.a=10
+    }
+  })
+}
