@@ -9,21 +9,35 @@
 </head>
 
 <body>
-  <h3>111</h3>
-  <div id="app"></div>
+  <div id="app">
+    <div id="my">
+      hello {{name}} <span>world</span>
+    </div>
+   </div>
   <script>
     const vm = new Vue({
       el: '#app',
       data() {
         return {
-            obj:{name:'zs',info:{x:1,y:2}},
-            a:[1,2,3,{a1:100,a2:200}]
+          name:'zs',
+          school: { name: 'zs', age: 10 },
+          arr: [100, 200, 300],
+          obj: { name: 'zs', info: { x: 1, y: 2 } },
+          a: [1, 2, 3, { a1: 100, a2: 200 }]
         }
-      }
+      },
+      //渲染的操作 默认会先找render方法， 如果没有写render方法，会查找template html模板，如果连template都没有 找当前el指定元素的内容进行渲染
+      //el:'#app' 和vm.$moute('#app')等价
+      //ast 解析template =》render方法
+      // render(h) {
+      //   //h是createElement函数
+      //   //标签名 属性（class id） children 
+      //   return h('div', {},)
+      // }
 
     })
     // vm._data.a.push(100,200,300)
-    vm._data.a.push({b:'bbb'}) //这个push的对象也需要是被劫持 拦截
+    // vm._data.a.push({b:'bbb'}) //这个push的对象也需要是被劫持 拦截
 
 
   </script>

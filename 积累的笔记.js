@@ -54,7 +54,7 @@
 }
 
 {
-//  proxy代理
+//  proxy代理 
   const info={_a:{name:'zs',age:10}}
   console.log(info._a.name);
   for(let key in info._a){
@@ -74,4 +74,9 @@
   }
   console.log(info.name); //info.name=>info._a.name 
   console.log(info.age);
+}
+
+
+{
+   //js 递归
 }

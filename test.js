@@ -133,3 +133,34 @@
   console.log(info.name); //info.name=>info._a.name 
   console.log(info.age);
 }
+
+{
+  const arr=['push', 'pop', 'unshift', 'shift', 'reverse','sort', 'splice']
+  const obj={}
+  for(let i=0;i<arr.length;i++){
+    obj[arr[i]]=function(){
+      console.log(i,arr[i])
+    }
+
+  }
+  console.log(obj);
+  obj.push()
+  obj.pop()
+}
+
+{
+  const arr=['push', 'pop', 'unshift', 'shift']
+
+  const obj=Object.create(Array.prototype) //obj.__proto__==Array.prototype
+  arr.__proto__=obj //arr.__proto__=obj  arr.__proto__.__proto__=Array.prototype  本来是arr.__proto__==Array.prototype 自己再中间拦截了一次
+  arr.forEach((method,index)=>{
+    obj[method]=function(){
+      console.log(method,index);
+    }
+  })
+  console.log('00000000000000000000000');
+  arr.push()
+  arr.unshift()
+  arr.reverse()
+
+}
