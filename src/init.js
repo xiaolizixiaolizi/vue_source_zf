@@ -1,5 +1,6 @@
 import { initState } from "./state"
 import {compileToFunctions} from './compiler/index'
+import {mountComponent} from './lifeCycle'
 export function initMixin(Vue){
   //写成一个个插件进行对原型的扩展
 //初始化方法
@@ -28,6 +29,7 @@ export function initMixin(Vue){
       const vm=this
       const options=vm.$options
       el=document.querySelector(el)
+      vm.$el=el
       const render=options.render
       //如果没有render 需要将template转为render方法
       if(!render){
@@ -42,9 +44,13 @@ export function initMixin(Vue){
         }
       }
 
+      //需要挂载这个组件
+      mountComponent(vm,el)
+
 
      
       
 
     }
 }
+

@@ -164,3 +164,16 @@
   arr.reverse()
 
 }
+
+{
+  const str='abcdef'
+  console.log(str.slice(1,3))
+  console.log(str.substring(1,3));
+}
+
+{
+  let obj={name:'as',age:10}
+  with(obj){
+    console.log(name,age); //as 10
+  }
+}

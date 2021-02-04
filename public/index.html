@@ -9,10 +9,12 @@
 </head>
 
 <body>
-  <div id="app">
-    <div id="my">
-      hello {{name}} <span>world</span>
-    </div>
+  <div id="app" style="color:pink;font-size:30px" a=1 b=2>  hello {{name}} {{msg}} hello
+    <span>hello</span>
+    <ul class="container" style="color:blue;">
+      <li>{{school.name}}</li>
+      <li>{{school.age}}</li>
+    </ul>
    </div>
   <script>
     const vm = new Vue({
@@ -20,6 +22,7 @@
       data() {
         return {
           name:'zs',
+          msg:'hahaha',
           school: { name: 'zs', age: 10 },
           arr: [100, 200, 300],
           obj: { name: 'zs', info: { x: 1, y: 2 } },

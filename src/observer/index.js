@@ -23,7 +23,7 @@ class Observer {
     // else this.walk(data)
     //反之就是数据了 重写数组的方法 push pop unshift shift sort reverse splice 函数劫持/切片编程
     else{
-      //data是数组实例
+      //data是数组实例 所以这里解释了 数组中通过索引
      data.__proto__=arrayMethods //对数组进行响应式监听（setter/setter）如果数组过大很消耗性能 如果拦截数组 arr[0] 其实等价于访问obj.a 就是在访问对象属性 自然会触发getter
      //观测数组中的对象类型 ，如果对象发生变化 也需要劫持 [1,2,{name:'xx}]  {name:'xx'}也需要被劫持
      this.observeArray(data)
